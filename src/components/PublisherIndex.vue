@@ -9,7 +9,7 @@
               <th>Country</th>
               <th>Founded</th>
               <th>Genre</th>
-              <!-- <th>Books</th> -->
+             <th>Books</th> 
               <th class="text-center">Actions</th>
             </tr>
           </thead>
@@ -19,13 +19,13 @@
               <td>{{ publisher.country }}</td>
               <td>{{ publisher.founded }}</td>
               <td>{{ publisher.genere }}</td>
-              <!-- <td>
+            <td>
                 <ul>
                   <li v-for="book in publisher.books" :key="book.book_id">
                     {{ book.title }}
                   </li>
                 </ul>
-              </td> -->
+              </td>
               <td>
                 <router-link class="button" :to="'/publisher/show/' + publisher._id">Show</router-link>
                 &nbsp;
@@ -47,30 +47,30 @@
     data() {
       return {
         title: 'Publisher List',
-        publishers: []  // Aquí se almacenarán los editores obtenidos del servidor
+        publishers: []  
       };
     },
     mounted() {
       this.allPublishers();
     },
     methods: {
-      // Obtener la lista de todos los editores
+     
       allPublishers() {
         fetch(this.url + '/.netlify/functions/publisherFindAll', {
           headers: { 'Accept': 'application/json' }
         })
           .then((response) => response.json())
           .then((items) => {
-            this.publishers = items;  // Asignar los datos de editores a la propiedad 'publishers'
+            this.publishers = items; 
           });
       },
-      // Eliminar un editor por ID
+      
       deletePublisher(id) {
         fetch(this.url + '/.netlify/functions/publisherDelete/' + id, {
           headers: { 'Content-Type': 'application/json' },
           method: 'DELETE'
         }).then(() => {
-          this.allPublishers();  // Actualizar la lista de editores después de eliminar uno
+          this.allPublishers();  
         });
       }
     }
